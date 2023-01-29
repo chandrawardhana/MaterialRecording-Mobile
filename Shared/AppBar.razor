@@ -1,0 +1,94 @@
+﻿
+ <MAppBar
+        Dense
+        ElevateOnScroll
+        Color="#5c4ce4"
+        Flat
+        Dark
+        class="absolute"
+         ScrollTarget="#scrolling-sheet-2"
+         style="z-index: 1000;position:fixed;"
+        >
+        
+       <ChildContent>
+        <div>
+        <Connection>
+                <Online>
+
+                        <div  class=" top-9 left-5 -ml-1 -mt-1 w-3 h-3 rounded-full bg-green-400 animate-ping"></div>
+                        <div  class=" top-9 left-5 -ml-1 -mt-3 w-3 h-3 rounded-full bg-green-400"></div>
+                </Online>
+                <Offline>
+                        
+                        <div  class=" top-9 left-5 -ml-1 -mt-1 w-3 h-3 rounded-full bg-red-400"></div>
+                </Offline>
+        </Connection>
+        </div>
+        
+        <MToolbarTitle class="font-semibold text-lg">&nbsp;&nbsp; Mobile Recording</MToolbarTitle>
+
+        <MSpacer></MSpacer>
+
+        <MButton Icon  Color="white">
+            <MIcon>mdi-history</MIcon>
+        </MButton>
+
+        <MAppBarNavIcon @onclick="() => drawer = true"></MAppBarNavIcon>
+        </ChildContent>
+    </MAppBar>
+
+
+<MNavigationDrawer
+        style="z-index: 1100"
+        @bind-Value="drawer"
+       Fixed
+        Temporary>
+        <ChildContent>
+         <MListItem Class="pt-10 justify-center">
+            <MListItemAvatar Size="80">
+                <MImage Src="https://randomuser.me/api/portraits/men/78.jpg"></MImage>
+            </MListItemAvatar>
+
+        </MListItem>
+        <div class="mx-auto text-center">
+							
+							<h3>Nama PPL</h3>
+							<p class="text-caption mt-1">alamatemail@email.com</p>
+							
+						</div>
+        <MDivider class="my-3"></MDivider>
+
+        <MList
+            Nav
+            Dense>
+            <MListItemGroup
+                @bind-Value="group"
+                ActiveClass="indigo--text text--accent-4">
+                <MListItem>
+                    <MListItemIcon>
+                        <MIcon>mdi-home</MIcon>
+                    </MListItemIcon>
+                    <MListItemTitle>Home</MListItemTitle>
+                </MListItem>
+
+                <MListItem>
+                    <MListItemIcon>
+                        <MIcon>mdi-account</MIcon>
+                    </MListItemIcon>
+                    <MListItemTitle>Account</MListItemTitle>
+                </MListItem>
+            </MListItemGroup>
+        </MList>
+    </ChildContent>
+     <AppendContent>
+            <div class="pa-2">
+                <MButton Block Dark>LogOut</MButton>
+            </div>
+        </AppendContent>
+    </MNavigationDrawer>
+
+    @code {
+    bool drawer;
+    StringNumber group;
+}
+

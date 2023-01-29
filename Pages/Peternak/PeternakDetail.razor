@@ -1,0 +1,43 @@
+ @page "/PeternakDetail"
+ @using AntDesign;
+@using Microsoft.JSInterop;
+@inject PageHistoryState PageHistoryState;
+
+
+ <BackBar/>
+
+
+ <PageHeader Class="site-page-header" Title="Detail Peternak" />
+
+ <MSimpleTable Elevation="0" Dense >
+
+     <table class="tabeldetail">
+         <tr>
+             <td style="height: 20px;">No Registrasi Mitra :</td>
+             <td>SAF-2023-123456</td>
+         </tr>
+         <tr>
+             <td style="height: 20px;">Nama :</td>
+             <td>Sumargono</td>
+         </tr>
+         <tr>
+             <td style="height: 20px;">Alamat :</td>
+             <td>Sukatani Kec. Mumbul Jawa Tengah</td>
+         </tr>
+         <tr>
+             <td style="height: 20px;">No Telp :</td>
+             <td>0812-2345-23467</td>
+         </tr>
+
+     </table>
+
+   
+ </MSimpleTable>
+
+@code{
+    protected override void OnInitialized()
+        {
+            PageHistoryState.AddPageToHistory("/");
+            base.OnInitialized();
+        }
+}

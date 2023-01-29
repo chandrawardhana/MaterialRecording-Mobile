@@ -1,0 +1,243 @@
+﻿@page "/"
+@inject IMessageService message;
+@using Microsoft.JSInterop;
+@inject PageHistoryState PageHistoryState;
+@using AntDesign
+<AppBar />
+
+<div class="visible md:visible lg:invisible">
+    <section class="strip"></section>
+</div>
+
+
+
+<MCard Flat Elevation="0" Id="scrolling-sheet-2">
+    <MTabs
+        @bind-Value="tab"
+        BackgroundColor="white"
+        Centered
+        style="z-index:-1;">
+        <MTab Value="1"> Kandang </MTab>
+
+        <MTab Value="2"> Chick-In </MTab>
+    </MTabs>
+
+    <MTabsItems Value="tab">
+        <MTabItem Value="1" key="1">
+            <div class="sticky">
+                <Card class="shadow" style="border-radius:0px;">
+                    <Search
+                        Placeholder="Search..."
+                        WrapperStyle="width: 100%;"
+                        BorderLine="false"
+                        ClassicSearchIcon
+                        Size="@InputSize.Large"
+                        @bind-Value="@txtValue"
+                        OnPressEnter="OnEnter"
+                        Loading="@loading"
+                    />
+                </Card>
+            </div>
+
+            <MSimpleTable>
+                <tbody>
+                    <tr>
+                        <td colspan="2" style="text-align:left;">
+                            Total : 159 Kandang
+                        </td>
+                        <td style="text-align:right;">New Cage: 19 Cage</td>
+                    </tr>
+                </tbody>
+            </MSimpleTable>
+
+            @code {
+                private string txtValue {
+                    get;
+                    set;
+                }
+                private bool loading;
+                private void Handle(string value) {
+                    Console.WriteLine(value);
+                }
+                private async Task OnEnter(KeyboardEventArgs e) {
+                    Console.WriteLine("Enter pressed ");
+                    loading = true;
+                    await
+                    message.Loading($" Cari { txtValue } ", 2);
+                    await Task.Delay(1000);
+                    loading = false;
+                }
+            }
+            <MCard Elevation="0"  Class="mx-auto">
+                <Collapse ExpandIconPosition="left" ExpandIcon="caret-right">
+                    <Panel Header="Komarudin - 22/12">
+                        <ExtraTemplate>
+                            <div>
+                                <Avatar
+                                    Size="small"
+                                    Style="background-color: #e80000"
+                                />
+                            </div>
+                        </ExtraTemplate>
+                        <ChildContent>
+                            <div><List1 /></div>
+
+                            <MButton
+                                href="/KandangDetail"
+                                Small
+                                Block
+                                Elevation="1"
+                                Dark
+                                Color="#5c4ce4"
+                            >
+                                Detail
+                            </MButton>
+                        </ChildContent>
+                    </Panel>
+
+                    <Panel Header="Tugiyo - 22/12">
+                        <ExtraTemplate>
+                            <div>
+                                <Avatar
+                                    Size="small"
+                                    Style="background-color: #ff8000"
+                                />
+                            </div>
+                        </ExtraTemplate>
+                        <ChildContent>
+                            <div><List1 /></div>
+                            <MButton
+                                href="/KandangDetail"
+                                Small
+                                Block
+                                Elevation="1"
+                                Dark
+                                Color="#5c4ce4"
+                            >
+                                Detail
+                            </MButton>
+                        </ChildContent>
+                    </Panel>
+
+                   @if (kandangs == null)
+                    {
+                    <Spin />
+                    }
+                    else
+                    {
+
+                    @foreach (var kandang in kandangs)
+                    {
+
+                    <Panel Header="@kandang">
+                        <ExtraTemplate>
+                            <div>
+                                <Avatar Size="small" style="background-color:#87d068" />
+                            </div>
+                        </ExtraTemplate>
+                        <ChildContent>
+                            <div><List1 /></div>
+                            <MButton
+                                href="/KandangDetail"
+                                Small
+                                Block
+                                Elevation="1"
+                                Dark
+                                Color="#5c4ce4">
+                                Detail
+                            </MButton>
+                        </ChildContent>
+                    </Panel>
+                    }
+                    }
+                </Collapse>
+            </MCard>
+            <MCardText class="fixed bottom-24 right-5">
+                <FabTransition Mode="TransitionMode.OutIn">
+                    <MButton
+                        class="z-90"
+                        Color="#5c4ce4"
+                        Dark
+                        Absolute
+                        Top
+                        Right
+                        Fab>
+                        <MIcon> mdi-plus </MIcon>
+                    </MButton>
+                </FabTransition>
+            </MCardText>
+        </MTabItem>
+
+        <MTabItem Value="2" key="2">
+            <MCardText class="fixed z-90 bottom-24 right-5">
+                <FabTransition Mode="TransitionMode.OutIn">
+                    <MButton Color="#5c4ce4" Dark Absolute Top Right Fab>
+                        <MIcon> mdi-plus </MIcon>
+                    </MButton>
+                </FabTransition>
+            </MCardText>
+        </MTabItem>
+    </MTabsItems>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+</MCard>
+
+
+
+<FooterBar/>
+
+
+@code {
+
+    StringNumber tab;
+
+    protected override void OnInitialized() {
+        PageHistoryState.AddPageToHistory("/");
+        base.OnInitialized();
+    }
+
+
+
+
+
+
+
+}
+
+@code {
+        @functions {
+        string[] kandangs=
+        { "Hadi Yulianto -  22/03",
+            "Mardiyanto -  24/06",
+            "Rusilah -  12/07",
+            "Margono -  03/09",
+            "Endang -  04/03",
+            "Moldoko -  12/07",
+            "Suryadi -  03/09",
+            "Erik -  04/03",
+            "Ruslah -  12/07",
+            "Gondo -  03/09",
+            "Farni -  04/03",
+            "Susanto -  12/07",
+            "Sumitro -  03/09",
+            "Sulistyono -  04/03",
+            "Debri Chick - In 12/07",
+            "Feri Chick - In 03/09",
+            "Sumijan -  04/03",
+            "Narto -  12/07",
+            "Margono -  03/09",
+            "Rusidah -  04/03",
+            "Bambang -  11/05"
+            };
+        }
+
+
+
+
+      }

@@ -1,0 +1,99 @@
+﻿@page "/PeternakDaftar"
+
+@using Microsoft.JSInterop;
+@inject PageHistoryState PageHistoryState;
+@using AntDesign;
+
+
+ <BackBar/>
+
+
+<Card class="sticky shadow">
+    <PageHeader Class="site-page-header" Title="Daftar Peternak"/>
+
+    <Search
+        Placeholder="Cari..."
+        WrapperStyle="width: 100%;"
+        AntDesign.ClassicSearchIcon="ClassicSearchIcon"/>
+
+</Card>
+
+
+
+<Collapse class="pt-50">
+    @foreach (var Peternak in Peternaks) {
+    <Panel Header="@Peternak">
+        <ListFarmer/>
+        <br/>
+
+       
+                
+         <MButton
+                href="/PeternakDetail"
+                Small 
+                Block
+                Elevation="1"
+                Dark
+                Color="#5c4ce4">
+            Detail
+            </MButton>
+    </Panel>
+
+    }
+
+</Collapse>
+
+
+<MCardText class="fixed bottom-8 right-4" >
+                    <FabTransition Mode="TransitionMode.OutIn">
+                        <MButton class="z-90" Color="#5c4ce4"
+                                
+                                 Dark
+                                 Absolute
+                                 Top
+                                 Right
+                                 Fab>
+                            <MIcon>
+                                mdi-plus
+                            </MIcon>
+                        </MButton>
+                    </FabTransition>
+                </MCardText>
+
+
+
+@code {
+        protected override void OnInitialized()
+        {
+            PageHistoryState.AddPageToHistory("/PeternakDaftar");
+            base.OnInitialized();
+        }
+    
+        @functions {
+                string[] Peternaks = {
+                        "Hadi Yulianto ",
+                        "Mardiyanto ",
+                        "Rusilah ",
+                        "Margono ",
+                        "Endang ",
+                        "Moldoko ",
+                        "Suryadi ",
+                        "Erik ",
+                        "Ruslah ",
+                        "Gondo ",
+                        "Farni ",
+                        "Susanto ",
+                        "Sumitro ",
+                        "Sulistyono ",
+                        "Debri Chick ",
+                        "Feri Chick ",
+                        "Sumijan ",
+                        "Narto ",
+                        "Margono ",
+                        "Rusidah ",
+                        "Bambang "
+                };
+
+        }
+
+}

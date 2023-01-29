@@ -1,0 +1,4 @@
+﻿
+<ItemGroup>
+	<MauiSplashScreen Include="Resources\Splash\splash.svg"  Color="#5C4CE4" BaseSize="128,128"/>
+</ItemGroup>
